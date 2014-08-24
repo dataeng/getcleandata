@@ -33,18 +33,18 @@ Below is a transformation process, coded in *run_analysis.R* script, producing t
  4.  Merge train and test to one set ('wearable' data frame)
  5.  Identify features with mean- and standard deviation-based values (those contain "mean()" or "std()") and get rid of all other features. Note1: two last columns, 'SubjectID', 'ActivityID' are kept). Note2: features with the substring 'mean' (without brackets '()') are excluded as not representing true means. The result is in 'wearable2' data frame
  6.  Read descriptive activity names and change activity-ids to activity names in 'wearable2' data frame
- 7.  Create final tidy dataset with average aggregation on 'ActivityID' and 'SubjectID' columns ('final_tidy_data_set' data frame) and write it to disk
+ 7.  Create final tidy data set with average aggregation on 'ActivityID' and 'SubjectID' columns ('final_tidy_data_set' data frame) and write it to disk
 
 
-Output (final tidy dataset)
+Output (final tidy data set)
 ---------------------------
-The tidy wide dataset has:
+The tidy data set has:
 * 68 variables ("Activity", "SubjectID" and 66 features)
 * 180 observations (i.e., 30 subjects x 6 activities)
 
 Variables description
 ---------------------
-Below is the list of variables in the final tidy dataset produced by "run_analysis.R" script.
+Below is the list of variables in the final tidy data set produced by "run_analysis.R" script.
 
 * *Activity*
     - Characters  
@@ -59,8 +59,6 @@ Below is the list of variables in the final tidy dataset produced by "run_analys
 * **66** time domain variables
     - Variable names: "tBodyAcc-mean()-X" "tBodyAcc-mean()-Y" "tBodyAcc-mean()-Z" "tGravityAcc-mean()-X" "tGravityAcc-mean()-Y" "tGravityAcc-mean()-Z" "tBodyAccJerk-mean()-X" "tBodyAccJerk-mean()-Y" "tBodyAccJerk-mean()-Z" "tBodyGyro-mean()-X" "tBodyGyro-mean()-Y" "tBodyGyro-mean()-Z" "tBodyGyroJerk-mean()-X" "tBodyGyroJerk-mean()-Y" "tBodyGyroJerk-mean()-Z" "tBodyAccMag-mean()" "tGravityAccMag-mean()" "tBodyAccJerkMag-mean()" "tBodyGyroMag-mean()" "tBodyGyroJerkMag-mean()" "fBodyAcc-mean()-X" "fBodyAcc-mean()-Y" "fBodyAcc-mean()-Z" "fBodyAccJerk-mean()-X" "fBodyAccJerk-mean()-Y" "fBodyAccJerk-mean()-Z" "fBodyGyro-mean()-X" "fBodyGyro-mean()-Y" "fBodyGyro-mean()-Z" "fBodyAccMag-mean()" "fBodyBodyAccJerkMag-mean()" "fBodyBodyGyroMag-mean()" "fBodyBodyGyroJerkMag-mean()" "tBodyAcc-std()-X" "tBodyAcc-std()-Y" "tBodyAcc-std()-Z" "tGravityAcc-std()-X" "tGravityAcc-std()-Y" "tGravityAcc-std()-Z" "tBodyAccJerk-std()-X" "tBodyAccJerk-std()-Y" "tBodyAccJerk-std()-Z" "tBodyGyro-std()-X" "tBodyGyro-std()-Y" "tBodyGyro-std()-Z" "tBodyGyroJerk-std()-X" "tBodyGyroJerk-std()-Y" "tBodyGyroJerk-std()-Z" "tBodyAccMag-std()" "tGravityAccMag-std()" "tBodyAccJerkMag-std()" "tBodyGyroMag-std()" "tBodyGyroJerkMag-std()" "fBodyAcc-std()-X" "fBodyAcc-std()-Y" "fBodyAcc-std()-Z" "fBodyAccJerk-std()-X" "fBodyAccJerk-std()-Y" "fBodyAccJerk-std()-Z" "fBodyGyro-std()-X" "fBodyGyro-std()-Y" "fBodyGyro-std()-Z" "fBodyAccMag-std()" "fBodyBodyAccJerkMag-std()" "fBodyBodyGyroMag-std()" "fBodyBodyGyroJerkMag-std()"
     - Numeric
-    - Values included in the [-1,1] range
+    - Values in [-1,1] range
     
 ---------------------------------------------------------------------
-
-    
