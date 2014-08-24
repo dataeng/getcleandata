@@ -49,7 +49,7 @@ Below is the list of variables in the final tidy data set produced by "run_analy
 * *Activity*
     - Characters  
     - Descriptive name of the activity performed by the subject.
-    - The list of its values is "Walking", "Walking Upstairs", "Walking Downstairs", "Sitting", "Standing", "Laying"
+    - List of values: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
 
 * *SubjectID*
     - Numeric
