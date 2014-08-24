@@ -15,4 +15,4 @@ Activity Recognition Using Smartphones" Dataset](http://archive.ics.uci.edu/ml/d
 
 Other notes
 -----------
-*run_analysis.R* is tested and used under the R version 3.1.1 (2014-07-10) environment
+*run_analysis.R* has been tested and used under the R version 3.1.1 (2014-07-10) environment
