@@ -1,9 +1,21 @@
-# ------------------------------------------------------
+# ---------------------------------------------------------------------
 # R script for Getting and Cleaning Data Course Project
 
 # Note: run from directory containing 'test' and 'train'
-# subdirs with test and train sets 
-# ------------------------------------------------------
+# subdirs with test and train sets taken from "Human 
+# Activity Recognition Using Smartphones Dataset 
+# http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
+# 
+# Script does the following:
+#  1. Merges the training and the test sets to create one data set
+#  2. Extracts only the measurements on the mean and standard deviation 
+#     for each measurement
+#  3. Uses descriptive activity names to name the activities in the data set
+#  4. Appropriately labels the data set with descriptive variable names 
+#  5. Creates a second, independent tidy data set with the average of 
+#     each variable for each activity and each subject (a tidy data set is written 
+#     to "final-tidy-data-set.txt" file in the same directory)
+# ---------------------------------------------------------------------
 
 # read data from train set
 x_train <- read.table("train/X_train.txt")
@@ -16,7 +28,7 @@ y_test <- read.table("test/y_test.txt",col.names="ActivityID")
 subj_test <- read.table("test/subject_test.txt",col.names="SubjectID")
 
 # read list of feature names (561 features)
-flabels <- read.table("features.txt",,col.names=c("fid","fname"))
+flabels <- read.table("features.txt",col.names=c("fid","fname"))
 
 # assign descriptive feature names to columns in 'x_train' and 'x_test' data frames 
 colnames(x_train) <- flabels$fname
