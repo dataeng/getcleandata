@@ -13,3 +13,6 @@ Usage
 Run *run_analysis.R* from directory containing 'test' and 'train' subdirs with test and train sets taken from ["Human 
 Activity Recognition Using Smartphones" Dataset](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 
+Other notes
+-----------
+*run_analysis.R* is tested and used under the R version 3.1.1 (2014-07-10) environment
