@@ -3,7 +3,7 @@
 
 # Note: run from directory containing 'test' and 'train'
 # subdirs with test and train sets taken from "Human 
-# Activity Recognition Using Smartphones Dataset 
+# Activity Recognition Using Smartphones" Dataset 
 # http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
 # 
 # Script does the following:
