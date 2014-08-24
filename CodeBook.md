@@ -2,9 +2,11 @@ CodeBook for Getting and Cleaning Data Course Project
 =====================================================
 Date: 25.08.2014
 
+
 Overview
 --------
 This file is a codebook for "Getting and Cleaning Data Course" Project. It describes the variables, the data, and transformations performed to clean up the source data.
+
 
 Source data
 ---------------
@@ -20,14 +22,16 @@ Due to the requirements to the (final) project's tidy data set, only the followi
 * features.txt
 * activity_labels.txt
 
+
 Transformation steps
 --------------------
 Below is a transformation process, coded in *run_analysis.R* script, producing the project's tidy data set from the source data:
-1. Read data from test and train sets
-2. Read list of feature names (561 features) and assign them to 'x_train' and 'x_test' data frames
-3. Add 'SubjectID' and 'ActivityID' columns to data frames representing train and test sets
-4. Merge train and test to one set ('wearable' data frame)
-5. Identify features with mean- and standard deviation-based values (those contain "mean()" or "std()") and get rid of all other features. Note1: two last columns, 'SubjectID', 'ActivityID' are kept). Note2: features with the substring 'mean' (without brackets '()') are excluded as not representing true means. The result is in 'wearable2' data frame. 
+     
+ 1.  Read data from test and train sets
+ 2.  Read list of feature names (561 features) and assign them to 'x_train' and 'x_test' data frames
+ 3.  Add 'SubjectID' and 'ActivityID' columns to data frames representing train and test sets
+ 4.  Merge train and test to one set ('wearable' data frame)
+ 5.  Identify features with mean- and standard deviation-based values (those contain "mean()" or "std()") and get rid of all other features. Note1: two last columns, 'SubjectID', 'ActivityID' are kept). Note2: features with the substring 'mean' (without brackets '()') are excluded as not representing true means. The result is in 'wearable2' data frame. 
 
 
 
