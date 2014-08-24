@@ -6,7 +6,7 @@ Overview
 --------
 This file is a codebook for "Getting and Cleaning Data Course" Project. It describes the variables, the data, and transformations performed to clean up the source data.
 
-The source data
+Source data
 ---------------
 The original data is [Human Activity Recognition Using Smartphones Data Set](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones), which is Human Activity Recognition database built from the recordings of 30 subjects performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors. The original data is available at http://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.zip
 
@@ -22,7 +22,26 @@ Due to the requirements to the (final) project's tidy data set, only the followi
 
 Transformation steps
 --------------------
-Below is a transformation process, coded in run_analysis.R script, producing the project's tidy data set from the source data:
+Below is a transformation process, coded in *run_analysis.R* script, producing the project's tidy data set from the source data:
+1. Read data from test and train sets
+2. Read list of feature names (561 features) and assign them to 'x_train' and 'x_test' data frames
+3. Add 'SubjectID' and 'ActivityID' columns to data frames representing train and test sets
+4. Merge train and test to one set ('wearable' data frame)
+5. Identify features with mean- and standard deviation-based values (those contain "mean()" or "std()") and get rid of all other features. Note1: two last columns, 'SubjectID', 'ActivityID' are kept). Note2: features with the substring 'mean' (without brackets '()') are excluded as not representing true means. The result is in 'wearable2' data frame. 
+
+
+
+
+05| Getting and merging activity codes for raw data observations|A dataframe named "Act_DF" with all activity codes associated to the training and test raw measures| Merge can be perfomed only if test and traing data have the same column numbers
+06| Getting activity codes and activity names redefinition | A dataframe with activity codes and new activity descriptive names| Activity original names are converted in a more readable and friendly format (converting uppercase, removing underscore characters ecc.)
+07| Getting activity descriptive names for raw observations| Updated "Act_DF" dataframe with all activity codes associated to the training and test raw measures and new activity descriptive names are available|-
+08| Getting subjects for raw observations|A dataframe named "Sbj_DF" with all the subject identifiers associated to the training and test raw observations|Merge can be perfomed only if test and traing data have the same column numbers
+09| Adding subjects and activities to the selected varibles raw observation dataframe|Updated "Data_DF" dataframe with all "mean() and std()" selected variables, the activity descriptive names, the identifiers of the subject performing the activities and one raw for each observation in the sourcing measure training and test datasets|Subjects, activities and measure dataset can be binded only if each dataframe contains the same rows number
+10| Computing the tidy dataset of means along subjects and activities of "mean() and std()" variables|One tidy wide-form dataframe named "Data_DF_Mean" containing the means along the couples [subject identifier, activity descriptive name]s for each selected "mean() and std()" variables|The "plyr" R-package is used to group data and to calculate mean values. To obtain a tidy dataset, variables have been renamed: adding "MeanOnSA prefix", replacing "-" with "_" character, removing wrong duplicated substrings such as "BodyBody" and eliminating brackets "(" / ")"
+
+
+
+
 
 ###The structure of the run_analysis.R script output tidy dataset###
 The output dataset of the "run_analysis.R" consists into a tidy dataset in wide form and it is obtained computing raw data collected by "Smartlab - Non Linear Complex Systems Laboratory" in an experiment of "Human Activity Recognition Using Smartphones Data Set".
@@ -36,40 +55,6 @@ The tidy wide dataset is characterised by:
 
 A detailed description of each variable in the tidy dataset will be provided into the "Variables description" paragraph.
 
-###The source data###
-The original data have been provided by "Smartlab - Non Linear Complex Systems Laboratory" and they consists into full set of observations collected from the accelerometers from the Samsung Galaxy S smartphone, on 30 individuals while performing 6 different types of activities (i.e. "Walking Upstairs", "Standing"...)
-
-The original data can be obtained uncompressing the "getdata-projectfiles-UCI HAR Dataset.zip", available at the following link https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-
-Among the files inside the zip file, the transformation process applied by the "run_analysis.R" uses:
-
-* //UCI HAR Dataset//test//X_test.txt
-* //UCI HAR Dataset//train//X_train.txt
-* //UCI HAR Dataset//features.txt
-* //UCI HAR Dataset//test//y_test.txt
-* //UCI HAR Dataset//train//y_train.txt
-* //UCI HAR Dataset//activity_labels.txt
-* //UCI HAR Dataset//test//subject_test.txt
-* //UCI HAR Dataset//train//subject_train.txt
-
-A detailed description of the sourcing files can be found browsing the original website:
-http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
-
-###The applied transformation process###
-The transformation process applied by the run_analysis.R can be summarised in the following steps
-
-Step |  Step Name | Output | Relevant Notes
-:----: | :------ |:-----| :------------------------------
-01| Merge of training and test measures datasets | A dataframe named "Data_DF" with all the training and test raw measures | Merge can be perfomed only if test and traing data have the same column numbers (561 columns)
-02| Obtaining the variables names of raw measures data | A dataframe named "Features_DF" with all the variables names of the raw measures | -                      
-03| Adding variables names to the raw measures dataframe | Updated "Data_DF" dataframe with all raw measures data and relative original variable names | Variable names can be added only if feature names data and raw measures dataframe have the same column numbers (561 columns)
-04| Subsetting the raw measures data frame| Updated "Data_DF" with all raw measures data, all relative original variable names but only "mean()" and "std()" variables| Only features with 'mean()' or 'std()' in their name are extracted, features that contain only the substring 'mean' (without brackets '()') in their name are excluded under the assumption that the measurements were not really means 
-05| Getting and merging activity codes for raw data observations|A dataframe named "Act_DF" with all activity codes associated to the training and test raw measures| Merge can be perfomed only if test and traing data have the same column numbers
-06| Getting activity codes and activity names redefinition | A dataframe with activity codes and new activity descriptive names| Activity original names are converted in a more readable and friendly format (converting uppercase, removing underscore characters ecc.)
-07| Getting activity descriptive names for raw observations| Updated "Act_DF" dataframe with all activity codes associated to the training and test raw measures and new activity descriptive names are available|-
-08| Getting subjects for raw observations|A dataframe named "Sbj_DF" with all the subject identifiers associated to the training and test raw observations|Merge can be perfomed only if test and traing data have the same column numbers
-09| Adding subjects and activities to the selected varibles raw observation dataframe|Updated "Data_DF" dataframe with all "mean() and std()" selected variables, the activity descriptive names, the identifiers of the subject performing the activities and one raw for each observation in the sourcing measure training and test datasets|Subjects, activities and measure dataset can be binded only if each dataframe contains the same rows number
-10| Computing the tidy dataset of means along subjects and activities of "mean() and std()" variables|One tidy wide-form dataframe named "Data_DF_Mean" containing the means along the couples [subject identifier, activity descriptive name]s for each selected "mean() and std()" variables|The "plyr" R-package is used to group data and to calculate mean values. To obtain a tidy dataset, variables have been renamed: adding "MeanOnSA prefix", replacing "-" with "_" character, removing wrong duplicated substrings such as "BodyBody" and eliminating brackets "(" / ")"
 
 For a deeper description of each step (precondition, postcondition, description and assumptions) please refere to the "Readme.md" file "The script algorithm and the transformation process from raw to tidy dataset" paragraph.
 
