@@ -31,18 +31,9 @@ Below is a transformation process, coded in *run_analysis.R* script, producing t
  2.  Read list of feature names (561 features) and assign them to 'x_train' and 'x_test' data frames
  3.  Add 'SubjectID' and 'ActivityID' columns to data frames representing train and test sets
  4.  Merge train and test to one set ('wearable' data frame)
- 5.  Identify features with mean- and standard deviation-based values (those contain "mean()" or "std()") and get rid of all other features. Note1: two last columns, 'SubjectID', 'ActivityID' are kept). Note2: features with the substring 'mean' (without brackets '()') are excluded as not representing true means. The result is in 'wearable2' data frame. 
-
-
-
-
-05| Getting and merging activity codes for raw data observations|A dataframe named "Act_DF" with all activity codes associated to the training and test raw measures| Merge can be perfomed only if test and traing data have the same column numbers
-06| Getting activity codes and activity names redefinition | A dataframe with activity codes and new activity descriptive names| Activity original names are converted in a more readable and friendly format (converting uppercase, removing underscore characters ecc.)
-07| Getting activity descriptive names for raw observations| Updated "Act_DF" dataframe with all activity codes associated to the training and test raw measures and new activity descriptive names are available|-
-08| Getting subjects for raw observations|A dataframe named "Sbj_DF" with all the subject identifiers associated to the training and test raw observations|Merge can be perfomed only if test and traing data have the same column numbers
-09| Adding subjects and activities to the selected varibles raw observation dataframe|Updated "Data_DF" dataframe with all "mean() and std()" selected variables, the activity descriptive names, the identifiers of the subject performing the activities and one raw for each observation in the sourcing measure training and test datasets|Subjects, activities and measure dataset can be binded only if each dataframe contains the same rows number
-10| Computing the tidy dataset of means along subjects and activities of "mean() and std()" variables|One tidy wide-form dataframe named "Data_DF_Mean" containing the means along the couples [subject identifier, activity descriptive name]s for each selected "mean() and std()" variables|The "plyr" R-package is used to group data and to calculate mean values. To obtain a tidy dataset, variables have been renamed: adding "MeanOnSA prefix", replacing "-" with "_" character, removing wrong duplicated substrings such as "BodyBody" and eliminating brackets "(" / ")"
-
+ 5.  Identify features with mean- and standard deviation-based values (those contain "mean()" or "std()") and get rid of all other features. Note1: two last columns, 'SubjectID', 'ActivityID' are kept). Note2: features with the substring 'mean' (without brackets '()') are excluded as not representing true means. The result is in 'wearable2' data frame
+ 6.  Read descriptive activity names and change activity-ids to activity names in 'wearable2' data frame
+ 7.  Create final tidy dataset with average aggregation on 'ActivityID' and 'SubjectID' columns and write it to disk
 
 
 
